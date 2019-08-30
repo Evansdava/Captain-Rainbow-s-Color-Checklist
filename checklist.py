@@ -1,3 +1,11 @@
+import os
+
+# Cross-platform clear terminal screen, found on StackOverflow from popcnt
+# https://stackoverflow.com/questions/517970/how-to-clear-the-interpreter-console
+def cls():
+    os.system('cls' if os.name=='nt' else 'clear')
+
+
 checklist = list()
 
 
@@ -14,6 +22,7 @@ def read(index):
         return None
 
 
+# Print list of items
 def list_all_items():
     index = 0
     for list_item in checklist:
@@ -139,13 +148,15 @@ def test():
     print(mark_completed(0))
 
 
-test()
+# test()
 
+# Main loop
 running = True
 while running:
     selection = user_input("""
-        Press C to add to list, R to Read from list, P to display list,
-        U to update list, D to destroy item on list, or M to √ an item.
-        Press Q to quit:
+        \033[1;32m Press C to add to list, \033[1;34m R to Read from list, \033[1;35m P to display list,
+        \033[1;36m U to update list, \033[1;31m D to destroy item, \033[1;33m or M to √ an item.
+        \033[1;37m Press Q to quit:
         """)
+    cls()
     running = select(selection)
